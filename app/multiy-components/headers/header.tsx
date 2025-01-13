@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Sheet,
   SheetContent,
@@ -10,9 +12,9 @@ import Link from "next/link";
 import React from "react";
 import { GoChevronDown } from "react-icons/go";
 import { IoPersonOutline, IoSearch } from "react-icons/io5";
-import { FiShoppingCart } from "react-icons/fi";
 import { CiHeart } from "react-icons/ci";
 import { HiBars3BottomRight } from "react-icons/hi2";
+import CartIcon from "./CartIcon";
 
 export default function Header() {
   return (
@@ -79,15 +81,11 @@ export default function Header() {
                 </Link>
               </li>
               <li className="">
-                <Link href={'/heartcard'} className="flex items-center gap-x-1">
-                  <FiShoppingCart size={24} />
-                  <p>1</p>
-                </Link>
+                <CartIcon />
               </li>
               <li className="">
                 <Link href={'/'} className="flex items-center gap-x-1">
                   <CiHeart size={28} />
-                  <p>1</p>
                 </Link>
               </li>
             </ul>
@@ -97,10 +95,8 @@ export default function Header() {
           <div className="flex md:hidden items-center gap-x-4">
             {/* Search */}
             <IoSearch size={24} className="text-[#23A6F0]" />
-            {/* Cart */}
-            <Link href={'/heartcard'} className="flex items-center">
-              <FiShoppingCart size={24} className="text-[#23A6F0]" />
-            </Link>
+
+            <CartIcon />
 
             {/* Toggle Button */}
             <Sheet>
@@ -165,10 +161,7 @@ export default function Header() {
                             </li>
 
                             <li className="">
-                              <Link href={"/heartcard"} className="flex items-center gap-x-1 hover:text-blue-900">
-                                <FiShoppingCart size={24} />
-                                <p>1</p>
-                              </Link>
+                              <CartIcon />
                             </li>
 
                             <li className="">

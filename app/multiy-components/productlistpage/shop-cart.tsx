@@ -20,15 +20,15 @@ export default function JustForYou({
   priceStrikeThrough,
 }:ProductCardProps){
   return (
-    <div className="w-full bg-white overflow-hidden">
+    <div className="w-full  overflow-hidden bg-[#f9f9f9]/50">
       {/* Product Image */}
-      <div className="w-full h-[380px] flex justify-center items-center">
+      <div className="w-full h-[380px] flex justify-center items-center group">
         <Image
           src={image}
           alt={title}
           width={238}
           height={380}
-          className="w-full h-[380px] object-cover"
+          className="object-cover transform group-hover:scale-125 transition-transform shadow-inner shadow-black duration-500 ease-in-out"
         />
       </div>
       

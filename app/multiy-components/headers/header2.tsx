@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import React from "react";
-import {  IoSearch } from "react-icons/io5";
-import { FiShoppingCart } from "react-icons/fi";
+import { IoSearch } from "react-icons/io5";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { Button } from "@/components/ui/button";
 import { HiArrowSmRight } from "react-icons/hi";
+import CartIcon from "./CartIcon";
 
 export default function Header_2() {
     return (
@@ -68,12 +68,12 @@ export default function Header_2() {
                     <div className="flex md:hidden items-center gap-x-4">
                         {/* Search */}
                         <Link href={"/productpage"}>
-                        <IoSearch size={24} className="text-gray-500" />
+                            <IoSearch size={24} className="text-gray-500" />
                         </Link>
                         {/* Cart */}
-                        <Link href={'/heartcard'} className="flex items-center">
-                            <FiShoppingCart size={24} className="text-gray-500" />
-                        </Link>
+                        <li className="">
+                            <CartIcon />
+                        </li>
 
                         {/* Toggle Button */}
                         <Sheet>
