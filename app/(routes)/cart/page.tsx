@@ -3,7 +3,7 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { incrementQuantity, decrementQuantity, removeFromCart } from "@/app/multiy-components/orderform/cart";
+import { incrementQuantity, decrementQuantity, removeFromCart } from "@/app/store/orderform/cart";
 import { RootState } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -59,6 +59,8 @@ export default function CartPage() {
               <Image
                 src={item.image}
                 alt={item.title}
+                width={50}
+                height={50}
                 className="w-20 h-20 object-cover"
               />
               <div className="space-y-3 pl-5">
