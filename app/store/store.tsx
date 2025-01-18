@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productReducer from './features/product';
-import cartReducer from '../multiy-components/orderform/cart';
+import cartSlice "@/app/
 
 export const store = configureStore({
   reducer: { 
