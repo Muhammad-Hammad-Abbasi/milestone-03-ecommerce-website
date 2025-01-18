@@ -5,16 +5,14 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IoMdStar } from "react-icons/io";
 import { FaRegStar } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
 import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { IoEye } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/app/multiy-components/orderform/cart";
 import { client } from "@/sanity/lib/client";
 import Green_Header from "@/app/multiy-components/headers/green-header";
 import Header from "@/app/multiy-components/headers/header";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import App from "@/app/multiy-components/toastify/toastify";
 
 // Interface for product card props
 interface ProductCardProps {
@@ -40,14 +38,13 @@ const fetchCards = async (): Promise<ProductCardProps[]> => {
     }
   `;
   return client.fetch(query);
+  
 };
 
 export default function CardDetail() {
   const [posts, setPosts] = useState<ProductCardProps[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null); // State for success message
   const params = useParams();
-  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchCards()
@@ -60,22 +57,8 @@ export default function CardDetail() {
 
   const id = parseInt(params?.id as string, 10);
   const card = posts?.find((p) => p.id === id);
+  
 
-  // Handle Add to Cart and display success message
-  const handleAddToCart = () => {
-    if (card) {
-      dispatch(
-        addToCart({
-          id: card.id,
-          title: card.title,
-          price: card.price,
-          image: card.image,
-        })
-      );
-      setSuccessMessage("Product added to cart successfully!"); // Show success message
-      setTimeout(() => setSuccessMessage(null), 3000); // Clear message after 3 seconds
-    }
-  };
 
   if (loading) {
     return <div className="h-[600px] text-center mt-20 font-bold text-3xl font-serif">Loading...</div>;
@@ -104,13 +87,6 @@ export default function CardDetail() {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-
-        {/* Notification Banner */}
-        {successMessage && (
-          <div className="bg-green-100 text-green-800 border border-green-500 px-4 py-2 rounded-md mx-6">
-            {successMessage}
-          </div>
-        )}
 
         {/* Product details */}
         <div className="flex flex-col md:flex-row py-4 justify-center items-center md:p-9 font-sans font-semibold">
@@ -142,9 +118,10 @@ export default function CardDetail() {
 
             {/* Add to Cart Button */}
             <div className="flex gap-5 py-4 items-center">
-              <Button onClick={handleAddToCart} className="bg-blue-500 py-6 px-7 rounded-xl text-white hover:bg-white hover:text-black">
+              {/* <Button onClick={handleAddToCart} className="bg-blue-500 py-6 px-7 rounded-xl text-white hover:bg-white hover:text-black">
                 Add to Cart
-              </Button>
+              </Button> */}
+              <App id={id} />
               <div className="flex gap-3">
                 <CiHeart size={40} className="bg-white p-2 rounded-full text-black" />
                 <PiShoppingCartSimpleThin size={40} className="bg-white p-2 rounded-full text-black" />
